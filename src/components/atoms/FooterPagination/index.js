@@ -8,7 +8,7 @@ const FooterPagination = ({visible}) => {
       {visible ? (
         <ActivityIndicator size="large" color={colors.border_danger} />
       ) : (
-        <Text style={styles.text}>Data sudah ditampilkan semua</Text>
+        <Text style={styles.text}>All posts have been shown</Text>
       )}
     </View>
   );

@@ -11,12 +11,13 @@ export const Posts = ({navigation}) => {
   const dispatch = useDispatch();
   const state_global = useSelector(state => state.global);
   const [list_post, setListPost] = useState([]);
+  const [post_filter, setPostFilter] = useState([]);
   const [refresh, setRefresh] = useState(false);
-  console.log(state_global.loading);
 
   useEffect(() => {
     dispatch(getPosts()).then(result => {
       setListPost(result);
+      setPostFilter(result);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -25,11 +26,24 @@ export const Posts = ({navigation}) => {
     setRefresh(true);
     dispatch(getPosts()).then(result => {
       setListPost(result);
+      setPostFilter(result);
       setRefresh(false);
     });
   };
 
-  const onSearch = value => {};
+  const onSearch = value => {
+    const newData = list_post.filter((item, index) => {
+      const title = item.title ? item.title : '';
+      const body = item.body ? item.body : '';
+      const text = value;
+      if (title.indexOf(text) > -1) {
+        return title.indexOf(text) > -1;
+      } else {
+        return body.indexOf(text) > -1;
+      }
+    });
+    setPostFilter(value ? newData : list_post);
+  };
 
   return (
     <View style={styles.page}>
@@ -49,7 +63,7 @@ export const Posts = ({navigation}) => {
         onEndReachedThreshold={0}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString()}
-        data={list_post}
+        data={post_filter}
         renderItem={({item}) => (
           <Card
             onPress={() =>
