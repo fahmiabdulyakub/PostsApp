@@ -11,7 +11,7 @@ export const Routes = () => {
     <NavigationContainer>
       <SafeAreaView style={styles.SafeAreaView}>
         <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
-        <Stack.Navigator initialRouteName="DaftarTransaksi">
+        <Stack.Navigator initialRouteName="Posts">
           <Stack.Screen
             name="Posts"
             component={Posts}
