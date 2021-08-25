@@ -3,12 +3,21 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {colors, fonts, hp, wp} from '../../../constants';
 import {Gap} from '../../atoms';
 
-export const Card = ({onPress, item}) => {
+export const Card = ({onPress, disabled, title, body, email}) => {
   return (
-    <TouchableOpacity style={styles.content} onPress={onPress}>
-      <Text style={styles.title}>{item.title}</Text>
+    <TouchableOpacity
+      style={styles.content}
+      onPress={onPress}
+      disabled={disabled}>
+      <Text style={styles.title}>{title}</Text>
+      {email && (
+        <>
+          <Gap height={hp(2)} />
+          <Text style={styles.description}>{email}</Text>
+        </>
+      )}
       <Gap height={hp(3)} />
-      <Text style={styles.description}>{item.body}</Text>
+      <Text style={styles.description}>{body}</Text>
     </TouchableOpacity>
   );
 };

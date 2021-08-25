@@ -1,2 +1,3 @@
 import ICSearch from './ICSearch.svg';
-export {ICSearch};
+import ICCancel from './ICCancel.svg';
+export {ICSearch, ICCancel};

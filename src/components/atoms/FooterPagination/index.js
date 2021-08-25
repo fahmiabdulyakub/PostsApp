@@ -2,13 +2,13 @@ import React from 'react';
 import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import {colors, fonts, hp} from '../../../constants';
 
-const FooterPagination = ({visible}) => {
+const FooterPagination = ({visible, text}) => {
   return (
     <View style={styles.footer}>
       {visible ? (
         <ActivityIndicator size="large" color={colors.border_danger} />
       ) : (
-        <Text style={styles.text}>All posts have been shown</Text>
+        <Text style={styles.text}> {'All ' + text + ' have been shown'}</Text>
       )}
     </View>
   );

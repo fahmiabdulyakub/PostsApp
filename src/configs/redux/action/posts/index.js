@@ -17,3 +17,19 @@ export const getPosts = () => dispatch => {
       });
   });
 };
+
+export const getComments = id => dispatch => {
+  return new Promise(resolve => {
+    dispatch({type: reducer.LOADING, value: true});
+    axios
+      .get(`${Config.API_URL}/${id}/comments`)
+      .then(result => {
+        dispatch({type: reducer.LOADING, value: false});
+        resolve(result.data);
+      })
+      .catch(error => {
+        dispatch({type: reducer.LOADING, value: false});
+        console.log(error);
+      });
+  });
+};

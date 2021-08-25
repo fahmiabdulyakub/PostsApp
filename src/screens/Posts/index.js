@@ -51,7 +51,7 @@ export const Posts = ({navigation}) => {
       <Input
         suffixComponent={<ICSearch />}
         backgroundColor={colors.white}
-        placeholder={'Search Posts'}
+        placeholder={'Search Post'}
         placeholderColor={colors.dark_grey}
         colorText={colors.black}
         onChangeText={value => onSearch(value.toLowerCase())}
@@ -71,11 +71,15 @@ export const Posts = ({navigation}) => {
                 post_id: item.id,
               })
             }
-            item={item}
+            title={item.title}
+            body={item.body}
           />
         )}
         ListFooterComponent={
-          <FooterPagination visible={refresh ? false : state_global.loading} />
+          <FooterPagination
+            visible={refresh ? false : state_global.loading}
+            text={'post'}
+          />
         }
       />
     </View>
@@ -93,11 +97,5 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: wp(3),
-  },
-  dot: {
-    backgroundColor: colors.black,
-    width: wp(2.5),
-    height: wp(2.5),
-    borderRadius: wp(2.5) / 2,
   },
 });
